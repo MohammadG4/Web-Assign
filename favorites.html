@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Favorites</title>
+    <link rel="stylesheet" href="favorites.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="recipes_list.html">Home</a></li>
+        <li><a href="addPage.html">Add Recipe</a></li>
+        <li><a href="favorites.html" class="active">Favorites</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </nav>
+
+    <h1>My Favorite Recipes</h1>
+
+    <div class="recipes-container">
+      <div class="recipe-card">
+        <h2>Spaghetti Bolognese</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Pasta, Tomato Sauce, Meat</p>
+        <p class="description">A classic Italian pasta dish with rich meat sauce and tender spaghetti.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <div class="action-buttons">
+            <a href="editPage.html" class="edit-btn">Edit</a>
+            <button class="remove-favorite">Remove from Favorites</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Chocolate Cake</h2>
+        <p><strong>Course:</strong> Dessert</p>
+        <p><strong>Ingredients:</strong> Flour, Cocoa, Eggs</p>
+        <p class="description">A moist and decadent chocolate cake perfect for any celebration.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <div class="action-buttons">
+            <a href="editPage.html" class="edit-btn">Edit</a>
+            <button class="remove-favorite">Remove from Favorites</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Caesar Salad</h2>
+        <p><strong>Course:</strong> Appetizers</p>
+        <p><strong>Ingredients:</strong> Lettuce, Chicken, Croutons, Caesar dressing</p>
+        <p class="description">A refreshing salad with crisp romaine lettuce, grilled chicken, and creamy Caesar dressing.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <div class="action-buttons">
+            <a href="editPage.html" class="edit-btn">Edit</a>
+            <button class="remove-favorite">Remove from Favorites</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Grilled Chicken</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Chicken, Spices, Olive Oil</p>
+        <p class="description">Juicy grilled chicken seasoned with herbs and spices, perfect for a healthy meal.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <div class="action-buttons">
+            <a href="editPage.html" class="edit-btn">Edit</a>
+            <button class="remove-favorite">Remove from Favorites</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" style="display: none;">
+      <p>You haven't added any recipes to your favorites yet.</p>
+      <a href="recipes_list.html" class="browse-btn">Browse Recipes</a>
+    </div>
+  </body>
+</html> 

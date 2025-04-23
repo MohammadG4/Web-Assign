@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recipe-Finder</title>
+    <link rel="stylesheet" href="recipes_list.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="recipes_list.html" class="active">Home</a></li>
+        <li><a href="addPage.html">Add Recipe</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </nav>
+
+    <h1>All Recipes</h1>
+
+    <div id = "big-container" class="recipes-container">
+      <div class="recipe-card">
+        <h2>Spaghetti Bolognese</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Pasta, Tomato Sauce, Meat</p>
+        <p class="description">A classic Italian pasta dish with rich meat sauce and tender spaghetti.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Chocolate Cake</h2>
+        <p><strong>Course:</strong> Dessert</p>
+        <p><strong>Ingredients:</strong> Flour, Cocoa, Eggs</p>
+        <p class="description">A moist and decadent chocolate cake perfect for any celebration.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Caesar Salad</h2>
+        <p><strong>Course:</strong> Appetizers</p>
+        <p><strong>Ingredients:</strong> Lettuce, Chicken, Croutons, Caesar dressing</p>
+        <p class="description">A refreshing salad with crisp romaine lettuce, grilled chicken, and creamy Caesar dressing.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Grilled Chicken</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Chicken, Spices, Olive Oil</p>
+        <p class="description">Juicy grilled chicken seasoned with herbs and spices, perfect for a healthy meal.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Apple Pie</h2>
+        <p><strong>Course:</strong> Dessert</p>
+        <p><strong>Ingredients:</strong> Apples, Sugar, Cinnamon, Dough</p>
+        <p class="description">A traditional apple pie with sweet-tart filling and flaky crust.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Tomato Soup</h2>
+        <p><strong>Course:</strong> Appetizers</p>
+        <p><strong>Ingredients:</strong> Tomatoes, Onion, Garlic, Cream</p>
+        <p class="description">Creamy tomato soup with a hint of garlic, perfect for cold days.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Beef Burger</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Beef patty, Lettuce, Tomato, Bun</p>
+        <p class="description">A juicy beef burger with fresh vegetables and a soft bun.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Cheesecake</h2>
+        <p><strong>Course:</strong> Dessert</p>
+        <p><strong>Ingredients:</strong> Cream cheese, Sugar, Biscuits</p>
+        <p class="description">A creamy cheesecake with a crunchy biscuit base and smooth filling.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Spring Rolls</h2>
+        <p><strong>Course:</strong> Appetizers</p>
+        <p><strong>Ingredients:</strong> Vegetables, Wrapper, Soy Sauce</p>
+        <p class="description">Crispy spring rolls filled with fresh vegetables, served with soy sauce.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <h2>Fettuccine Alfredo</h2>
+        <p><strong>Course:</strong> Main Course</p>
+        <p><strong>Ingredients:</strong> Pasta, Cream, Parmesan</p>
+        <p class="description">Creamy fettuccine pasta with rich Alfredo sauce and parmesan cheese.</p>
+        <div class="card-actions">
+          <a href="RecipePage.html" class="details-btn">View Details</a>
+          <a href="editPage.html" class="edit-btn">Edit</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function putdata(recipe) {
+        const newdiv = document.createElement("div");
+        const container = document.getElementById("big-container");
+    
+        newdiv.className = "recipe-card";
+    
+        newdiv.innerHTML = `
+          <h2>${recipe.name}</h2>
+          <p><strong>Course:</strong> ${recipe.crsname}</p>
+          <p><strong>Ingredients:</strong> ${recipe.ingred}</p>
+          <p class="description">${recipe.decrib}</p>
+          <div class="card-actions">
+            <a href="RecipePage.html" class="details-btn">View Details</a>
+            <a href="editPage.html" class="edit-btn">Edit</a>
+          </div>
+        `;
+    
+        container.appendChild(newdiv);
+      }
+    
+      const alldata = JSON.parse(localStorage.getItem("saved_data")) || [];
+    
+      alldata.forEach(putdata);
+    </script>
+      </body>
+</html>
