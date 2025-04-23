@@ -2,20 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Recipe-Finder</title>
+    <title>Home</title>
     <link rel="stylesheet" href="recipes_list.css" />
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-      <ul>
-        <li><a href="recipes_list.html" class="active">Home</a></li>
-        <li><a href="addPage.html">Add Recipe</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="login.html">Logout</a></li>
-      </ul>
-    </nav>
+    <!-- Header with Navigation -->
+    <header>
+      <nav>
+        <div class="nav-links">
+          <a href="recipes_list.html" class="active">Home</a>
+          <a href="addPage.html">Add Recipe</a>
+          <a href="favorites.html">Favorites</a>
+          <a href="search.html">Search</a>
+          <a href="login.html">Logout</a>
+        </div>
+      </nav>
+    </header>
 
     <h1>All Recipes</h1>
 
@@ -155,5 +157,5 @@
     
       alldata.forEach(putdata);
     </script>
-      </body>
+  </body>
 </html>

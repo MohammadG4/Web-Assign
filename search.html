@@ -3,112 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search - Recipe Finder</title>
+    <title>Recipe Search</title>
     <link rel="stylesheet" href="searchstyles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-      <ul>
-        <li><a href="recipes_list.html">Home</a></li>
-        <li><a href="addPage.html">Add Recipe</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="search.html" class="active">Search</a></li>
-        <li><a href="login.html">Logout</a></li>
-      </ul>
-    </nav>
-
-    <h1>Advanced Recipe Search</h1>
-
-    <div class="search-container">
-        <div class="search-filters">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search recipes...">
-                <button id="search-button">Search</button>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="recipes_list.html">Home</a>
+                <a href="addPage.html">Add Recipe</a>
+                <a href="favorites.html">Favorites</a>
+                <a href="search.html" class="active">Search</a>
+                <a href="login.html">Logout</a>
             </div>
+        </nav>
+    </header>
 
-            <div class="filters-grid">
-                <div class="filter-section">
-                    <h3>Cooking Time</h3>
-                    <select id="cooking-time">
-                        <option value="">Any</option>
-                        <option value="15">15 minutes or less</option>
-                        <option value="30">30 minutes or less</option>
-                        <option value="60">1 hour or less</option>
-                        <option value="120">2 hours or less</option>
-                    </select>
+    <main>
+        <section class="search-section">
+            <h1>Search Recipes</h1>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search by recipe name or description...">
+                    <button id="search-button">Search</button>
                 </div>
-
-                <div class="filter-section">
-                    <h3>Difficulty Level</h3>
-                    <select id="difficulty">
-                        <option value="">Any</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </div>
-
-                <div class="filter-section">
-                    <h3>Cuisine Type</h3>
-                    <select id="cuisine">
-                        <option value="">Any</option>
-                        <option value="italian">Italian</option>
-                        <option value="indian">Indian</option>
-                        <option value="chinese">Chinese</option>
-                        <option value="mexican">Mexican</option>
-                        <option value="american">American</option>
-                        <option value="mediterranean">Mediterranean</option>
-                    </select>
-                </div>
-
-                <div class="filter-section">
-                    <h3>Dietary Restrictions</h3>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" value="vegetarian"> Vegetarian</label>
-                        <label><input type="checkbox" value="vegan"> Vegan</label>
-                        <label><input type="checkbox" value="gluten-free"> Gluten-Free</label>
-                        <label><input type="checkbox" value="dairy-free"> Dairy-Free</label>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-input">
-                        <input type="text" id="ingredient-input" placeholder="Add ingredients...">
-                    </div>
-                    <div id="ingredients-list" class="ingredients-list"></div>
-                </div>
-
-                <div class="filter-section">
-                    <h3>Sort By</h3>
-                    <select id="sort-by">
-                        <option value="relevance">Relevance</option>
-                        <option value="newest">Newest</option>
-                        <option value="popular">Most Popular</option>
-                        <option value="rating">Highest Rated</option>
-                    </select>
+                <div class="filter-box">
+                    <input type="text" id="ingredient-input" placeholder="Filter by ingredients (comma-separated)">
                 </div>
             </div>
+        </section>
 
-            <div class="filter-actions">
-                <button id="apply-filters" class="details-btn">Apply Filters</button>
-                <button id="clear-filters" class="edit-btn">Clear All Filters</button>
+        <section class="results-section">
+            <div id="recipes-grid" class="recipes-grid">
+                <!-- Recipe cards will be dynamically inserted here -->
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="search-results">
-            <div class="results-header">
-                <h2>Search Results</h2>
-                <span id="results-count">0 recipes found</span>
-            </div>
-            <div id="recipes-grid" class="recipes-container">
-                
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 Recipe Management System. All rights reserved.</p>
+    </footer>
 
+    <!-- Load JavaScript files -->
+    <script src="recipeManager.js"></script>
     <script src="search.js"></script>
+    <script>
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
 
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html> 

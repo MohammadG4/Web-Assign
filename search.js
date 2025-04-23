@@ -1,9 +1,6 @@
-// Load and parse data from localStorage
-const list = localStorage.getItem('saved_data');
-const data = JSON.parse(list) || [];
-
-let filteredItems = [...data];
-let filters = {};
+// Initialize RecipeManager
+const recipeManager = new RecipeManager();
+let filteredItems = [];
 
 const searchResults = document.getElementById('recipes-grid');
 const searchInput = document.getElementById('search-input');
@@ -12,11 +9,10 @@ const ingredientsInput = document.getElementById('ingredient-input');
 
 // Append filtered recipes to the UI
 const appendFilteredItems = () => {
-    applyFilters();
-
     searchResults.innerHTML = '';
+    
     if (filteredItems.length === 0) {
-        searchResults.innerHTML = '<p>No results found</p>';
+        searchResults.innerHTML = '<p class="no-results">No recipes found matching your criteria</p>';
         return;
     }
 
@@ -26,7 +22,6 @@ const appendFilteredItems = () => {
             const ingredients = JSON.parse(item.ingred);
             ingredientsDisplay = ingredients.map((ing) => ing.name).join(', ');
         } catch (err) {
-            // fallback إذا ingred مش JSON
             ingredientsDisplay = item.ingred;
         }
 
@@ -39,8 +34,11 @@ const appendFilteredItems = () => {
                 <p><strong>Ingredients:</strong> ${ingredientsDisplay}</p>
                 <p class="description">${item.decrib}</p>
                 <div class="card-actions">
-                    <a href="RecipePage.html" class="details-btn">View Details</a>
-                    <a href="editPage.html" class="edit-btn">Edit</a>
+                    <a href="RecipePage.html?id=${item.id}" class="details-btn">View Details</a>
+                    <button onclick="toggleFavorite('${item.id}')" class="favorite-btn">
+                        ${isFavorite(item.id) ? '❤️' : '🤍'}
+                    </button>
+                    ${isCurrentUserAdmin() ? `<a href="editPage.html?id=${item.id}" class="edit-btn">Edit</a>` : ''}
                 </div>
             </div>
         `;
@@ -49,62 +47,52 @@ const appendFilteredItems = () => {
     });
 }
 
-
-// Manage filters object
-const addFilter = (key, filterFunction) => {
-    filters[key] = filterFunction;
-};
-
-const removeFilter = (key) => {
-    delete filters[key];
-};
-
-// Apply filters to data
-const applyFilters = () => {
-    filteredItems = data.filter((item) => {
-        return Object.values(filters).every((filter) => filter(item));
-    });
-};
-
-// Search filter
+// Search functionality
 const search = () => {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-
-    if (searchTerm === '') {
-        removeFilter('search');
-    } else {
-        addFilter('search', (item) =>
-            item.name.toLowerCase().includes(searchTerm)
-        );
+    const searchTerm = searchInput.value;
+    const selectedIngredients = ingredientsInput.value.split(',').map(ing => ing.trim()).filter(ing => ing);
+    
+    let results = recipeManager.getAllRecipes();
+    
+    // Apply search term filter
+    if (searchTerm) {
+        results = recipeManager.searchRecipes(searchTerm);
     }
-
-    appendFilteredItems();
-};
-
-// Ingredient filter
-ingredientsInput.addEventListener('change', (event) => {
-    const selectedIngredients = ingredientsInput.value.split(',').map((ingredient) => ingredient.trim().toLowerCase());
-    console.log(selectedIngredients);
-
-    if (selectedIngredients.length === 1 && selectedIngredients[0] === '') {
-        delete filters.ingredients;
-    } else {
-        addFilter('ingredients', (item) => {
-            let ingredients = [];
-
-            try {
-                ingredients = JSON.parse(item.ingred).map((ingredient) => ingredient.name.toLowerCase());
-            } catch (err) {
-                ingredients = item.ingred.toLowerCase().split(',').map(i => i.trim());
-            }
-
-            return selectedIngredients.every((ingredient) => ingredients.includes(ingredient));
-        });
+    
+    // Apply ingredients filter
+    if (selectedIngredients.length > 0) {
+        results = recipeManager.filterByIngredients(selectedIngredients);
     }
-
+    
+    filteredItems = results;
     appendFilteredItems();
-});
+}
 
+// Helper functions
+const isFavorite = (recipeId) => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return false;
+    
+    const favorites = JSON.parse(localStorage.getItem(`favorites_${currentUser.username}`)) || [];
+    return favorites.includes(recipeId);
+}
+
+const isCurrentUserAdmin = () => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser && currentUser.isAdmin;
+}
+
+const toggleFavorite = (recipeId) => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        alert('Please login to add favorites');
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    recipeManager.toggleFavorite(currentUser.username, recipeId);
+    search(); // Refresh the display
+}
 
 // Event Listeners
 searchButton.addEventListener('click', search);
@@ -114,5 +102,7 @@ searchInput.addEventListener('keyup', (event) => {
     }
 });
 
+ingredientsInput.addEventListener('change', search);
+
 // Initial load
-appendFilteredItems();
+search();
