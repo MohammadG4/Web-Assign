@@ -82,7 +82,7 @@
           const name = document.getElementById("name").value;
           const crsname = document.getElementById("course").value;
           const description = document.getElementById("description").value;
-      
+          
           const ingredientsList = document.getElementById("ingredients-list").children;
           const ingredients = [];
       
@@ -94,7 +94,8 @@
             name: name,
             crsname: crsname.charAt(0).toUpperCase() + crsname.slice(1).replace("_", " "), 
             ingred: ingredients.join(", "),
-            decrib: description
+            decrib: description,
+            isFav: false
           };
       
           const existingData = JSON.parse(localStorage.getItem("saved_data")) || [];
