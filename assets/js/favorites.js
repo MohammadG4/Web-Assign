@@ -1,19 +1,15 @@
 // favorites.js - Script for the favorites page
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Load all recipes from localStorage
   const loadFavoriteRecipes = () => {
     const savedRecipes = JSON.parse(localStorage.getItem("saved_data")) || [];
-    // Filter only favorite recipes
     const favoriteRecipes = savedRecipes.filter(recipe => recipe.isFav === true);
     
     const recipesContainer = document.querySelector('.recipes-container');
     const emptyState = document.querySelector('.empty-state');
     
-    // Clear existing recipe cards
     recipesContainer.innerHTML = '';
     
-    // Show empty state if no favorites
     if (favoriteRecipes.length === 0) {
       recipesContainer.style.display = 'none';
       emptyState.style.display = 'block';
@@ -21,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
       recipesContainer.style.display = 'grid';
       emptyState.style.display = 'none';
       
-      // Create and append recipe cards for favorites
       favoriteRecipes.forEach((recipe, index) => {
         const recipeCard = createRecipeCard(recipe, index);
         recipesContainer.appendChild(recipeCard);
@@ -29,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
   
-  // Create recipe card HTML element
   const createRecipeCard = (recipe, index) => {
     const card = document.createElement('div');
     card.className = 'recipe-card';

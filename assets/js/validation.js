@@ -10,13 +10,11 @@ class AuthManager {
     }
 
     validatePassword(password) {
-        // Password must be at least 8 characters long and contain at least one number and one letter
         const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         return re.test(password);
     }
 
     validateUsername(username) {
-        // Username must be at least 3 characters long and contain only letters, numbers, and underscores
         const re = /^[a-zA-Z0-9_]{3,}$/;
         return re.test(username);
     }
@@ -72,7 +70,6 @@ class AuthManager {
     }
 }
 
-// UI Helper Functions
 function showError(input, message) {
     const formControl = input.parentElement;
     const errorDisplay = formControl.querySelector('.error');
@@ -100,10 +97,8 @@ function clearError(input) {
     input.classList.remove('error-border');
 }
 
-// Initialize AuthManager
 const authManager = new AuthManager();
 
-// Sign Up Validation
 function validateSignUp(event) {
     event.preventDefault();
     
@@ -112,7 +107,6 @@ function validateSignUp(event) {
     const confirmPassword = document.getElementById('confirm-password');
     const email = document.getElementById('email');
     
-    // Clear previous errors
     [username, password, confirmPassword, email].forEach(clearError);
     
     try {
@@ -140,14 +134,12 @@ function validateSignUp(event) {
     return false;
 }
 
-// Login Validation
 function validateLogin(event) {
     event.preventDefault();
     
     const username = document.getElementById('username');
     const password = document.getElementById('password');
     
-    // Clear previous errors
     [username, password].forEach(clearError);
     
     try {
@@ -162,7 +154,6 @@ function validateLogin(event) {
     return false;
 }
 
-// Initialize forms
 document.addEventListener('DOMContentLoaded', function() {
     const signUpForm = document.getElementById('signup-form');
     if (signUpForm) {

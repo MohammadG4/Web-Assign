@@ -1,28 +1,23 @@
-// Recipe Management System
 class RecipeManager {
     constructor() {
         this.recipes = JSON.parse(localStorage.getItem('saved_data')) || [];
     }
 
-    // Get all recipes
     getAllRecipes() {
         return this.recipes;
     }
 
-    // Get recipe by ID
     getRecipeById(id) {
         return this.recipes.find(recipe => recipe.id === id);
     }
 
-    // Add new recipe
     addRecipe(recipe) {
-        recipe.id = Date.now().toString(); // Simple unique ID generation
+        recipe.id = Date.now().toString(); 
         this.recipes.push(recipe);
         this.saveToStorage();
         return recipe;
     }
 
-    // Update existing recipe
     updateRecipe(id, updatedRecipe) {
         const index = this.recipes.findIndex(recipe => recipe.id === id);
         if (index !== -1) {
@@ -33,7 +28,6 @@ class RecipeManager {
         return false;
     }
 
-    // Delete recipe
     deleteRecipe(id) {
         const index = this.recipes.findIndex(recipe => recipe.id === id);
         if (index !== -1) {
@@ -44,7 +38,6 @@ class RecipeManager {
         return false;
     }
 
-    // Search recipes
     searchRecipes(query) {
         query = query.toLowerCase().trim();
         return this.recipes.filter(recipe => 
@@ -53,7 +46,6 @@ class RecipeManager {
         );
     }
 
-    // Filter recipes by ingredients
     filterByIngredients(ingredients) {
         return this.recipes.filter(recipe => {
             let recipeIngredients = [];
@@ -68,18 +60,15 @@ class RecipeManager {
         });
     }
 
-    // Save to localStorage
     saveToStorage() {
         localStorage.setItem('saved_data', JSON.stringify(this.recipes));
     }
 
-    // Get user's favorite recipes
     getFavoriteRecipes(userId) {
         const favorites = JSON.parse(localStorage.getItem(`favorites_${userId}`)) || [];
         return this.recipes.filter(recipe => favorites.includes(recipe.id));
     }
 
-    // Toggle favorite status
     toggleFavorite(userId, recipeId) {
         const favorites = JSON.parse(localStorage.getItem(`favorites_${userId}`)) || [];
         const index = favorites.indexOf(recipeId);
@@ -91,9 +80,8 @@ class RecipeManager {
         }
         
         localStorage.setItem(`favorites_${userId}`, JSON.stringify(favorites));
-        return index === -1; // Returns true if added to favorites, false if removed
+        return index === -1; 
     }
 }
 
-// Export the RecipeManager class
 window.RecipeManager = RecipeManager; 
