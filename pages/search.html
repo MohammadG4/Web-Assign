@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Search</title>
-    <link rel="stylesheet" href="searchstyles.css">
+    <link rel="stylesheet" href="../assets/css/searchstyles.css">
 </head>
 <body>
     <header>
@@ -45,17 +45,15 @@
     </footer>
 
     <!-- Load JavaScript files -->
-    <script src="recipeManager.js"></script>
-    <script src="search.js"></script>
+    <script src="../assets/js/recipeManager.js"></script>
+    <script src="../assets/js/search.js"></script>
     <script>
-        // Handle logout
         document.getElementById('logout-btn').addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('currentUser');
             window.location.href = 'login.html';
         });
 
-        // Check if user is logged in
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser) {
             window.location.href = 'login.html';
